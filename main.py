@@ -1,8 +1,9 @@
 import os
 from art import logo
 
+
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-end = False
+
 
 def encrypt(text, shift):
     encrypted_wrapped = []
@@ -16,8 +17,7 @@ def encrypt(text, shift):
         else:
             encrypted_wrapped.append(char)
     encrypted = ''.join(encrypted_wrapped)
-    print(f"The encoded word is: {encrypted}")
-    end = True
+    print(f"\nThe encoded word is: {encrypted}")
 
 def decrypt(text, shift):
     decrypted_wrapped = []
@@ -31,34 +31,57 @@ def decrypt(text, shift):
         else:
             decrypted_wrapped.append(char)
     decrypted = ''.join(decrypted_wrapped)
-    print(f"The decoded word is: {decrypted}")
+    print(f"\nThe decoded word is: {decrypted}")
+
+def input_encrypt():
+    text = input("\nType your message:\n").lower()
+    while True:
+        shift_input = input("\nType the shift number:\n")
+        if shift_input.isdigit():
+            shift = int(shift_input)
+            encrypt(text, shift)
+            break
+        else:
+            print("Invalid input. Please use numbers only.")
+            continue
+
+def input_decrypt():
+    text = input("\nType your message:\n").lower()
+    while True:
+        shift_input = input("\nType the shift number:\n")
+        if shift_input.isdigit():
+            shift = int(shift_input)
+            decrypt(text, shift)
+            break
+        else:
+            print("Invalid input. Please use numbers only.")
+            continue
+
 
 print(logo)
 while True:
     while True:
         while True:
             direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+            end = False
             if direction == "encode":
-                text = input("Type your message:\n").lower()
-                shift = int(input("Type the shift number:\n"))
-                encrypt(text, shift)
+                input_encrypt()
                 end = True
-            if direction == "decode":
-                text = input("Type your message:\n").lower()
-                shift = int(input("Type the shift number:\n"))
-                decrypt(text, shift)
+            elif direction == "decode":
+                input_decrypt()
                 end = True
             else:
-                print("Invalid input.")
-            break
-        if end:
-            go_again = input("Do you want another cipher? (y/n): ").lower()
-            if go_again == "y":
-                os.system('cls' if os.name == 'nt' else 'clear')
-                break
-            elif go_again == "n":
-                print("Goodbye.")
-                exit()
-            else:
-                print("Invalid input.")
+                print("Invalid input.\n")
                 continue
+            while True:
+                if end:
+                    go_again = input("\nDo you want another cipher? (y/n): ").lower()
+                    if go_again == "y":
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        break
+                    elif go_again == "n":
+                        print("Goodbye.")
+                        exit()
+                    else:
+                        print("Invalid input. 'y' or 'n' only.\n")
+                        continue
