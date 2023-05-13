@@ -1,51 +1,64 @@
-alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+import os
+from art import logo
 
-def encrypt(text):
-    listed_input = list(text)
-    index_values = []
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+end = False
+
+def encrypt(text, shift):
     encrypted_wrapped = []
-    for char in listed_input:
-        index = alphabet.index(char)
-        index_values.append(index)
-    shifted_index = [num + shift for num in index_values]
-    for index in shifted_index:
-        if index >= 0 and index < len(alphabet):
-            encrypted_wrapped.append(alphabet[index])
+    for char in text:
+        if char.isalpha():
+            char_lower = char.lower()
+            index = alphabet.index(char_lower)
+            shifted_index = (index + shift) % len(alphabet)
+            shifted_chars = alphabet[shifted_index]
+            encrypted_wrapped.append(shifted_chars)
         else:
-            wrapped_index = index % len(alphabet)
-            encrypted_wrapped.append(alphabet[wrapped_index])
+            encrypted_wrapped.append(char)
     encrypted = ''.join(encrypted_wrapped)
     print(f"The encoded word is: {encrypted}")
+    end = True
 
-def decrypt(text):
-    listed_input2 = list(text)
-    index2_values = []
+def decrypt(text, shift):
     decrypted_wrapped = []
-    for char in listed_input2:
-        index2 = alphabet.index(char)
-        index2_values.append(index2)
-    shifted_index2 = [num - shift for num in index2_values]
-    for index in shifted_index2:
-        if index >= 0 and index < len(alphabet):
-            decrypted_wrapped.append(alphabet[index])
+    for char in text:
+        if char.isalpha():
+            char_lower = char.lower()
+            index = alphabet.index(char_lower)
+            shifted_index = (index - shift) % len(alphabet)
+            shifted_chars = alphabet[shifted_index]
+            decrypted_wrapped.append(shifted_chars)
         else:
-            wrapped_index2 = index % len(alphabet)
-            decrypted_wrapped.append(alphabet[wrapped_index2])
+            decrypted_wrapped.append(char)
     decrypted = ''.join(decrypted_wrapped)
     print(f"The decoded word is: {decrypted}")
 
+print(logo)
 while True:
     while True:
-        direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
-        if direction == "encode":
-            text = input("Type your message:\n").lower()
-            shift = int(input("Type the shift number:\n"))
-            encrypt(text)
+        while True:
+            direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+            if direction == "encode":
+                text = input("Type your message:\n").lower()
+                shift = int(input("Type the shift number:\n"))
+                encrypt(text, shift)
+                end = True
+            if direction == "decode":
+                text = input("Type your message:\n").lower()
+                shift = int(input("Type the shift number:\n"))
+                decrypt(text, shift)
+                end = True
+            else:
+                print("Invalid input.")
             break
-        if direction == "decode":
-            text = input("Type your message:\n").lower()
-            shift = int(input("Type the shift number:\n"))
-            decrypt(text)
-        else:
-            print("Invalid input.")
-        break
+        if end:
+            go_again = input("Do you want another cipher? (y/n): ").lower()
+            if go_again == "y":
+                os.system('cls' if os.name == 'nt' else 'clear')
+                break
+            elif go_again == "n":
+                print("Goodbye.")
+                exit()
+            else:
+                print("Invalid input.")
+                continue
