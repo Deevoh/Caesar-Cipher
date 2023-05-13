@@ -4,5 +4,5 @@ A caesar cipher that shifts text forwards and has both encryption and decryption
 
 ## **To Do**
 
-- Finish implementing encryption.
 - Implement decryption.
+- Working menu with the option to reset the program.
