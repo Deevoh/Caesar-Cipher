@@ -17,7 +17,7 @@ def encrypt(text, shift):
         else:
             encrypted_wrapped.append(char)
     encrypted = ''.join(encrypted_wrapped)
-    print(f"\nThe encoded word is: {encrypted}")
+    print(f"\nThe encoded word is: \n{encrypted}")
 
 def decrypt(text, shift):
     decrypted_wrapped = []
@@ -31,7 +31,7 @@ def decrypt(text, shift):
         else:
             decrypted_wrapped.append(char)
     decrypted = ''.join(decrypted_wrapped)
-    print(f"\nThe decoded word is: {decrypted}")
+    print(f"\nThe decoded word is: \n{decrypted}")
 
 def input_encrypt():
     text = input("\nType your message:\n").lower()
@@ -83,5 +83,5 @@ while True:
                         print("Goodbye.")
                         exit()
                     else:
-                        print("Invalid input. 'y' or 'n' only.\n")
+                        print("Invalid input. 'y' or 'n' only.")
                         continue
