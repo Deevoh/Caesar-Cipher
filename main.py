@@ -4,15 +4,21 @@ direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
 text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
 
-index_values = ""
-
 def encrypt(text):
-    listed_string = list(text)
+    listed_input = list(text)
     index_values = []
-    print(listed_string) # DEBUG
-    for char in listed_string:
+    encrypted_wrapped = []
+    for char in listed_input:
         index = alphabet.index(char)
         index_values.append(index)
-    print(index_values)
+    shifted_index = [num + shift for num in index_values]
+    for index in shifted_index:
+        if index >= 0 and index < len(alphabet):
+            encrypted_wrapped.append(alphabet[index])
+        else:
+            wrapped_index = index % len(alphabet)
+            encrypted_wrapped.append(alphabet[wrapped_index])
+    encrypted = ''.join(encrypted_wrapped)
+    print(f"The encoded word is: {encrypted}")
 
 encrypt(text)
