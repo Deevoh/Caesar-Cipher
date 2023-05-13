@@ -4,4 +4,5 @@ A caesar cipher that shifts text forwards and has both encryption and decryption
 
 ## **To Do**
 
-- Working menu with the option to reset the program.
+- An invalid choice check if the user types in anything not numerical during the shift input
+- Fix the "invalid input" loop issue.
