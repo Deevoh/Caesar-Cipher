@@ -4,4 +4,5 @@ A caesar cipher that shifts text forwards and has both encryption and decryption
 
 ## **To Do**
 
-- Retain the position of capital letters?
+- Retain/shift the position of capital letters?
+- Shift the symbol and number lists too instead of retaining their value?
