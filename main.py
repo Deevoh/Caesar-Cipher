@@ -58,9 +58,9 @@ def input_decrypt():
             continue
 
 
-print(logo)
 while True:
     while True:
+        print(logo)
         while True:
             direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
             end = False
@@ -80,8 +80,9 @@ while True:
                         os.system('cls' if os.name == 'nt' else 'clear')
                         break
                     elif go_again == "n":
-                        print("Goodbye.")
+                        print("\nGoodbye.\n")
                         exit()
                     else:
                         print("Invalid input. 'y' or 'n' only.")
                         continue
+            break
